@@ -31,40 +31,66 @@ while ($category_row = $result_categories->fetch_assoc()) {
 $conn->close();
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_desktop.css">
+    <link rel="stylesheet" href="style_mobile.css" media="only screen and (max-width: 768px)">
 </head>
 <body>
 <div class="container">
-    <?php foreach ($categories as $kategorie): ?>
-        <h2><?php echo $kategorie; ?></h2>
-        <?php
-        // Verbindung zur Datenbank herstellen
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    <div class="header">
+        <h1>B-Kurs Girls</h1>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Suche...">
+        </div>
+        <div class="dropdown">
+            <img src="./img/dropdown.png" class="dropbtn" onclick="toggleDropdown()" alt="Dropdown Image">
+            <div class="dropdown-content" id="dropdown-content">
+                <!-- Eigene Links hinzufügen -->
+                <a href="https://example.com/link1">Link 1</a>
+                <a href="https://example.com/link2">Link 2</a>
+                <a href="https://example.com/link3">Link 3</a>
+            </div>
+        </div>
 
-        // SQL-Abfrage, um die Links einer Kategorie aus der Datenbank abzurufen
-        $sql_links = "SELECT link, beschreibung, titel FROM links WHERE kategorie = '$kategorie'";
-        $result_links = $conn->query($sql_links);
+    </div>
+    <div class="card-container">
+        <?php foreach ($categories as $kategorie): ?>
+            <div class="card" id="<?php echo $kategorie; ?>">
+                <div class="card-header">
+                    <?php echo $kategorie; ?>
+                </div>
+                <div class="card-body">
+                    <?php
+                    // Verbindung zur Datenbank herstellen
+                    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Überprüfen, ob die Abfrage erfolgreich war
-        if (!$result_links) {
-            die("Fehler bei der Abfrage: ". $conn->error);
-        }
+                    // SQL-Abfrage, um die Links einer Kategorie aus der Datenbank abzurufen
+                    $sql_links = "SELECT link, beschreibung, titel FROM links WHERE kategorie = '$kategorie'";
+                    $result_links = $conn->query($sql_links);
 
-        // Links einer Kategorie aus der Datenbank ausgeben
-        while ($row = $result_links->fetch_assoc()) {
-            echo "<a href='". $row["link"]. "' title='". $row["titel"]. "'>". $row["beschreibung"]. "</a>";
-        }
+                    // Überprüfen, ob die Abfrage erfolgreich war
+                    if (!$result_links) {
+                        die("Fehler bei der Abfrage: ". $conn->error);
+                    }
 
-        // Verbindung zur Datenbank schließen
-        $conn->close();
-        ?>
-    <?php endforeach; ?>
+                    // Links einer Kategorie aus der Datenbank ausgeben
+                    while ($row = $result_links->fetch_assoc()) {
+                        echo "<a href='". $row["link"]. "' title='". $row["titel"]. "'>". $row["beschreibung"]. "</a>";
+                    }
+
+                    // Verbindung zur Datenbank schließen
+                    $conn->close();
+                    ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </div>
 
 <script src="script.js"></script>
