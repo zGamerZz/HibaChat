@@ -6,7 +6,6 @@ $username = "root";
 $password = "";
 $dbname = "bkurs-girls";
 
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Überprüfen, ob die Verbindung erfolgreich war
@@ -75,11 +74,12 @@ $conn->close();
             <input type="text" id="titel" name="titel" required>
             <br>
             <label for="kategorie">Kategorie:</label>
-            <select id="kategorie" name="kategorie" required>
+            <input type="text" id="kategorie" name="kategorie" list="kategorie-liste" required>
+            <datalist id="kategorie-liste">
                 <?php foreach ($categories as $kategorie): ?>
-                    <option value="<?php echo $kategorie; ?>"><?php echo $kategorie; ?></option>
-                <?php endforeach; ?>
-            </select>
+                <option value="<?php echo $kategorie; ?>">
+                    <?php endforeach; ?>
+            </datalist>
             <br>
             <button type="submit">Hinzufügen</button>
         </form>
