@@ -6,6 +6,7 @@ $username = "root";
 $password = "";
 $dbname = "bkurs-girls";
 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Überprüfen, ob die Verbindung erfolgreich war
