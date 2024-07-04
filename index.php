@@ -52,9 +52,10 @@ $conn->close();
             <img src="./img/dropdown.png" class="dropbtn" onclick="toggleDropdown()" alt="Dropdown Image">
             <div class="dropdown-content" id="dropdown-content">
                 <!-- Eigene Links hinzufügen -->
-                <a href="https://example.com/link1">Link 1</a>
-                <a href="https://example.com/link2">Link 2</a>
-                <a href="https://example.com/link3">Link 3</a>
+             <a href="https://specialsky.my.canva.site/dag123km-ds">Link 1</a>
+            <a href="https://specialsky.my.canva.site/anwesenheit">Noten</a>
+            <a href="https://butter-ko.me/bkurs-girls/chat">Chat</a>
+
             </div>
         </div>
 
